@@ -41,36 +41,59 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function getCommand(path:String) {
+	var config = vscode.workspace.getConfiguration("code-runner");
+	var command = "";
+	var exe = path.substring(0, path.lastIndexOf(".")) + ".exe";
 	switch (path.substring(path.lastIndexOf("."), path.length)) {
 		case ".c":
-			delFile(path.substring(0, path.lastIndexOf(".")) + ".exe");
-			return "gcc " + path + " -o " + path.substring(0, path.lastIndexOf(".")) + ".exe && " + path.substring(0, path.lastIndexOf(".")) + ".exe" ; 
+			delFile(exe);
+			command = config.get("c") + "";
+			break;
 	
 		case ".cpp":
-			delFile(path.substring(0, path.lastIndexOf(".")) + ".exe");
-			return "g++ " + path + " -o " + path.substring(0, path.lastIndexOf(".")) + ".exe && " + path.substring(0, path.lastIndexOf(".")) + ".exe" ; 
+			delFile(exe);
+			command = config.get("cpp") + "";
+			break;
 
 		case ".java":
-			return "java " + path;
+			command = config.get("java") + "";
+			break;
 
 		case ".py":
-			return "python " + path;
+			command = config.get("python") + "";
+			break;
 
 		case ".bpy":
-			return "BetterPy \"" + path + "\"";
+			command = config.get("BetterPy") + "";
+			break;
 
 		case ".rs":
-			return "cd "+ path.substring(0, path.lastIndexOf("\\")) +  " && cargo run && ./target\\debug\\ " + path.substring(0, path.lastIndexOf(".")) + ".exe";
+			command = config.get("rust") + "";
+			break;
 			
-
 		default:
 			return "failed";
 	}
+
+	while (command.includes("%File%")){
+		command = command.replace("%File%", path + "");
+	}
+
+	while (command.includes("%Dir%")){
+		command = command.replace("%Dir%", path.substring(0, path.lastIndexOf("\\")));
+	}
+
+	while (command.includes("%Exe%")){
+		command = command.replace("%Exe%", exe);
+	}
+
+	return command;
+	
 }
 
 function delFile(params:String) {
 	var h = vscode.window.createTerminal("haha")
-	h.sendText("del " + params);
+	h.sendText("taskkill -IM "+ params.substring(params.lastIndexOf("\\") + 1, params.length) + " /F && del " + params);
 	h.dispose();
 }
 
