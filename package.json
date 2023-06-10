@@ -1,10 +1,28 @@
 {
-  "name": "code-runner",
+  "name": "coder-runner123",
   "displayName": "Code-Runner",
   "description": "Run Code.",
-  "publisher": "SillyGoose123",
-  "repository": {"url": "https://github.com/SillyGoose123/code-runner"},
-  "version": "2.0.2",
+  "publisher": "SillyGoose",
+  
+  "icon": "./Run.png",
+
+  "author": {
+    "name": "SillyGoose123",
+    "url": "https://sillycode.tech/devteam/sillygoose"
+  },
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SillyGoose123/code-runner"
+  },
+
+  "bugs": {
+    "url": "https://github.com/SillyGoose123/code-runner/issues"
+  },
+
+  "homepage": "https://github.com/twxs/vs.language.cmake/blob/master/README.md",
+
+  "version": "2.2.0",
   "engines": {
     "vscode": "^1.78.0"
   },
