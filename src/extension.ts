@@ -29,11 +29,11 @@ export function activate(context: vscode.ExtensionContext) {
 				t.sendText(command + "");
 				//show the terminal
 				t.show();
+				//Show the it is running
+				vscode.window.showInformationMessage("Running " + fileName);
 			}
 			
-		} else{
-			vscode.window.showErrorMessage("Workspace isn't trusted.");
-		}
+		} else vscode.window.showErrorMessage("Workspace isn't trusted.");
 		
 	});
 
@@ -44,37 +44,9 @@ function getCommand(path:String) {
 	var config = vscode.workspace.getConfiguration("code-runner");
 	var command = "";
 	var exe = path.substring(0, path.lastIndexOf(".")) + ".exe";
-	switch (path.substring(path.lastIndexOf("."), path.length)) {
-		case ".c":
-			delFile(exe);
-			command = config.get("c") + "";
-			break;
 	
-		case ".cpp":
-			delFile(exe);
-			command = config.get("cpp") + "";
-			break;
-
-		case ".java":
-			command = config.get("java") + "";
-			break;
-
-		case ".py":
-			command = config.get("python") + "";
-			break;
-
-		case ".bpy":
-			command = config.get("BetterPy") + "";
-			break;
-
-		case ".rs":
-			command = config.get("rust") + "";
-			break;
-			
-		default:
-			return "failed";
-	}
-
+	command = config.get(vscode.window.activeTextEditor?.document.languageId + "") + "";
+	
 	while (command.includes("%File%")){
 		command = command.replace("%File%", path + "");
 	}

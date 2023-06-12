@@ -20,9 +20,9 @@
     "url": "https://github.com/SillyGoose123/code-runner/issues"
   },
 
-  "homepage": "https://github.com/twxs/vs.language.cmake/blob/master/README.md",
+  "homepage": "https://sillycode.tech",
 
-  "version": "2.2.0",
+  "version": "2.2.3",
   "engines": {
     "vscode": "^1.78.0"
   },
@@ -39,7 +39,7 @@
         "category": "Run Code",
         "shortTitle": "RC",
         "icon": "$(run)",
-        "enablement": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust) && shellExecutionSupported"
+        "enablement": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
       }
     ],
     "keybindings": [
@@ -52,25 +52,25 @@
       "explorer/context": [
         {
           "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust) && shellExecutionSupported"
+          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/context": [
         {
           "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust) && shellExecutionSupported"
+          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/context": [
         {
           "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust) && shellExecutionSupported"
+          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/run": [
         {
           "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust) && shellExecutionSupported"
+          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ]
     },
@@ -107,6 +107,16 @@
             "type": "string",
             "default": "cd %Dir% && cargo run && ./target\\debug\\%Exe%",
             "description": "The command to run Rust files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
+          },
+          "code-runner.bat": {
+            "type": "string",
+            "default": "%File%",
+            "description": "The command to run Batch files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
+          },
+          "code-runner.powershell": {
+            "type": "string",
+            "default": "%File%",
+            "description": "The command to run PowerShell files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           }
         }
       }
