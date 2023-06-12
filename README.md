@@ -6,3 +6,5 @@ Run code in:
 - Python
 - BetterPy
 - Rust
+- Batch
+- PowerShell
