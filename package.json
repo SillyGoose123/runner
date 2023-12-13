@@ -22,7 +22,7 @@
 
   "homepage": "https://sillycode.tech",
 
-  "version": "2.2.3",
+  "version": "2.2.4",
   "engines": {
     "vscode": "^1.78.0"
   },
@@ -40,6 +40,12 @@
         "shortTitle": "RC",
         "icon": "$(run)",
         "enablement": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+      },{
+        "command": "code-runner.CommentOut",
+        "title": "Comment Out",
+        "category": "Run Code",
+        "shortTitle": "CO",
+        "enablement": "activeEditor"
       }
     ],
     "keybindings": [
