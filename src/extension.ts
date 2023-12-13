@@ -37,7 +37,20 @@ export function activate(context: vscode.ExtensionContext) {
 		
 	});
 
+	let command2 = vscode.commands.registerCommand('code-runner.CommentOut', () => {
+		var editor = vscode.window.activeTextEditor;
+		const selectedText:String = editor?.document.getText(editor.selection) + "";
+		if(selectedText.length > 0){
+			editor?.edit(builder => {
+				builder.delete(new vscode.Range(new vscode.Position(0, 1), new vscode.Position(editor?.document.lineCount, 0))
+			});
+			
+			
+		}
+	});
+
 	context.subscriptions.push(command);
+	context.subscriptions.push(command2);
 }
 
 function getCommand(path:String) {
