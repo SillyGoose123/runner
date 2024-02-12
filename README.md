@@ -8,3 +8,4 @@ Run code in:
 - Rust
 - Batch
 - PowerShell
+- exe
