@@ -1,28 +1,28 @@
 {
-  "name": "coder-runner123",
-  "displayName": "Code-Runner",
-  "description": "Run Code.",
-  "publisher": "SillyGoose",
+  "name": "runner123",
+  "displayName": "Runner123",
+  "description": "Run Code & Tasks.",
+  "publisher": "SillyGoose123",
   
   "icon": "./Run.png",
 
   "author": {
     "name": "SillyGoose123",
-    "url": "https://sillycode.tech/devteam/sillygoose"
+    "url": "https://github.com/SillyGoose123"
   },
   
   "repository": {
     "type": "git",
-    "url": "https://github.com/SillyGoose123/code-runner"
+    "url": "https://github.com/SillyGoose123/runner"
   },
 
   "bugs": {
-    "url": "https://github.com/SillyGoose123/code-runner/issues"
+    "url": "https://github.com/SillyGoose123/runner/issues"
   },
 
   "homepage": "https://sillycode.tech",
 
-  "version": "2.2.4",
+  "version": "2.2.5",
   "engines": {
     "vscode": "^1.78.0"
   },
@@ -34,95 +34,100 @@
   "contributes": {
     "commands": [
       {
-        "command": "code-runner.RunCode",
-        "title": "Run Code",
+        "command": "runner.run",
+        "title": "Run",
         "category": "Run Code",
-        "shortTitle": "RC",
+        "shortTitle": "run",
         "icon": "$(run)",
-        "enablement": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
-      },{
-        "command": "code-runner.CommentOut",
-        "title": "Comment Out",
+        "enablement": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+      },
+      {
+        "command": "runner.runAllTasks",
+        "title": "Run All Tasks",
         "category": "Run Code",
-        "shortTitle": "CO",
-        "enablement": "activeEditor"
+        "shortTitle": "RAT"
       }
     ],
     "keybindings": [
       {
-        "command": "code-runner.RunCode",
-        "key": "F10"
+        "command": "runner.run",
+        "key": "F5"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+          "command": "runner.run",
+          "when": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/context": [
         {
-          "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+          "command": "runner.run",
+          "when": "(resourceExtname == .exe ||resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/context": [
         {
-          "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+          "command": "runner.run",
+          "when": "(resourceExtname == .exe ||resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/run": [
         {
-          "command": "code-runner.RunCode",
-          "when": "(resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
+          "command": "runner.run",
+          "when": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ]
     },
     "configuration": [
       {
-        "title": "Code-Runner Config",
+        "title": "Runner Config",
         "properties": {
-          "code-runner.c": {
+          "runner.c": {
             "type": "string",
             "default": "gcc %File% -o %Exe% && %Exe%",
             "description": "The command to run c files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe." 
           },
-          "code-runner.cpp": {
+          "runner.cpp": {
             "type": "string",
             "default": "g++ %File% -o %Exe% && %Exe%",
             "description": "The command to run cpp files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.java": {
+          "runner.java": {
             "type": "string",
             "default": "java %File%",
             "description": "The command to run java files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.python": {
+          "runner.python": {
             "type": "string",
             "default": "python %File%",
             "description": "The command to run python files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.BetterPy": {
+          "runner.BetterPy": {
             "type": "string",
             "default": "BetterPy %File%",
             "description": "The command to run BetterPy files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.rust": {
+          "runner.rust": {
             "type": "string",
             "default": "cd %Dir% && cargo run && ./target\\debug\\%Exe%",
             "description": "The command to run Rust files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.bat": {
+          "runner.bat": {
             "type": "string",
             "default": "%File%",
             "description": "The command to run Batch files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "code-runner.powershell": {
+          "runner.powershell": {
             "type": "string",
             "default": "%File%",
             "description": "The command to run PowerShell files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
+          },
+          "runner.exe": {
+            "type": "string",
+            "default": "%File%",
+            "description": "The command to run exe files. You can use %File% the file with loaction, %Dir% for the dir of the file."
           }
         }
       }
@@ -138,7 +143,7 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
-  },
+  }, 
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
