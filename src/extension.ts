@@ -1,24 +1,30 @@
-import * as vscode from 'vscode';
-import { gitBlame } from './blamer';
-import { runCode } from './runner';
+import * as vscode from "vscode";
+import { decorationType, gitBlame } from "./blamer";
+import { runCode } from "./runner";
 
 export function activate(context: vscode.ExtensionContext) {
+  context.subscriptions.push(
+    vscode.commands.registerCommand("runner123.run", runCode)
+  );
 
-	context.subscriptions.push(vscode.commands.registerCommand('runner123.run', runCode));
+  //enable / disable git blame
+  context.subscriptions.push(
+    vscode.commands.registerCommand("runner123.switchBlameMode", () => {
+      //get the mode
+      let config: any = vscode.workspace.getConfiguration("runner123");
 
-	//enable / disable git blame
-	context.subscriptions.push(vscode.commands.registerCommand("runner123.switchBlameMode", () => {
-		//get the mode
-		let config: any = vscode.workspace.getConfiguration("runner123");
-		
-		//change the mode
-		let newMode = "Show";
-		if(config.get("gitBlameMode") === "Show") newMode = "Hide";
-		config.update("gitBlameMode", newMode);
-	}));
+      //change the mode
+      let newMode = "Show";
+      if (config.get("gitBlameMode") === "Show") {
+        vscode.window.activeTextEditor?.setDecorations(decorationType, []);
+				newMode = "Hide";
+      }
+      config.update("gitBlameMode", newMode);
+    })
+  );
 
-	//state update for git blame
-	context.subscriptions.push(
+  //state update for git blame
+  context.subscriptions.push(
     vscode.window.onDidChangeTextEditorSelection(gitBlame),
     vscode.window.onDidChangeTextEditorVisibleRanges(gitBlame),
     vscode.workspace.onDidSaveTextDocument((e) => {
@@ -31,4 +37,4 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {	}
+export function deactivate() {}
