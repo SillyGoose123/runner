@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as cp from "child_process";
 
-const decorationType = vscode.window.createTextEditorDecorationType({
+export const decorationType = vscode.window.createTextEditorDecorationType({
   after: {
     textDecoration: "none; opacity: 0.25;",
     margin: "0 0 0 6em",
@@ -13,6 +13,7 @@ export function gitBlame(e: { readonly textEditor: vscode.TextEditor }) {
   if (
     vscode.workspace.getConfiguration("runner123").get("gitBlameMode") ===
     "Hide"
+    
   )
     return;
 
@@ -59,15 +60,12 @@ function formatBlame(
 
 	let dataMessage = data.substring(data.indexOf("Date:")+ 5, data.length);
 
-	//when
+	//when?
 	message += " • " + timeAgo(dataMessage.substring(0, dataMessage.indexOf("\n")));
 
-	//why?
-	message += " • " + dataMessage.substring(dataMessage.indexOf("+0000") + 5, dataMessage.length).trim();
-
-	console.log(message);
+	//why? (Commit message)
+	message += " • " + dataMessage.substring(dataMessage.indexOf("\n") + 5, dataMessage.length).trim();
 	
-
   const range = new vscode.Range(
     line.lineNumber,
     line.text.length,
