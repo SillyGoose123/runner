@@ -1,133 +1,139 @@
 {
   "name": "runner123",
   "displayName": "Runner123",
-  "description": "Run Code & Tasks.",
+  "description": "Run Code & more.",
   "publisher": "SillyGoose123",
-  
   "icon": "./Run.png",
-
   "author": {
     "name": "SillyGoose123",
     "url": "https://github.com/SillyGoose123"
   },
-  
   "repository": {
     "type": "git",
     "url": "https://github.com/SillyGoose123/runner"
   },
-
   "bugs": {
     "url": "https://github.com/SillyGoose123/runner/issues"
   },
-
   "homepage": "https://sillycode.tech",
-
-  "version": "2.2.5",
+  "version": "2.2.6",
   "engines": {
     "vscode": "^1.78.0"
   },
   "categories": [
     "Testing"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "workspaceContains:.git"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "runner.run",
-        "title": "Run",
-        "category": "Run Code",
-        "shortTitle": "run",
+        "command": "runner123.run",
+        "title": "Run Code",
+        "category": "Runner123",
+        "shortTitle": "runc",
         "icon": "$(run)",
         "enablement": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
       },
       {
-        "command": "runner.runAllTasks",
-        "title": "Run All Tasks",
-        "category": "Run Code",
-        "shortTitle": "RAT"
+        "command": "runner123.switchBlameMode",
+        "title": "Switch Blame Mode",
+        "category": "Runner123",
+        "shortTitle": "sbm",
+        "enablement": "true"
       }
     ],
     "keybindings": [
       {
-        "command": "runner.run",
+        "command": "runner123.run",
         "key": "F5"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "runner.run",
+          "command": "runner123.run",
           "when": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/context": [
         {
-          "command": "runner.run",
+          "command": "runner123.run",
           "when": "(resourceExtname == .exe ||resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/context": [
         {
-          "command": "runner.run",
+          "command": "runner123.run",
           "when": "(resourceExtname == .exe ||resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ],
       "editor/title/run": [
         {
-          "command": "runner.run",
+          "command": "runner123.run",
           "when": "(resourceExtname == .exe || resourceLangId == c || resourceLangId == cpp || resourceLangId == java || resourceLangId == python || resourceLangId == BetterPy || resourceLangId == rust || resourceLangId == bat || resourceLangId == powershell) && shellExecutionSupported"
         }
       ]
     },
     "configuration": [
       {
-        "title": "Runner Config",
+        "title": "Runnner123",
         "properties": {
-          "runner.c": {
+          "runner123.c": {
             "type": "string",
             "default": "gcc %File% -o %Exe% && %Exe%",
-            "description": "The command to run c files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe." 
+            "description": "The command to run c files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.cpp": {
+          "runner123.cpp": {
             "type": "string",
             "default": "g++ %File% -o %Exe% && %Exe%",
             "description": "The command to run cpp files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.java": {
+          "runner123.java": {
             "type": "string",
             "default": "java %File%",
             "description": "The command to run java files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.python": {
+          "runner123.python": {
             "type": "string",
             "default": "python %File%",
             "description": "The command to run python files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.BetterPy": {
+          "runner123.BetterPy": {
             "type": "string",
             "default": "BetterPy %File%",
             "description": "The command to run BetterPy files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.rust": {
+          "runner123.rust": {
             "type": "string",
             "default": "cd %Dir% && cargo run && ./target\\debug\\%Exe%",
             "description": "The command to run Rust files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.bat": {
+          "runner123.bat": {
             "type": "string",
             "default": "%File%",
             "description": "The command to run Batch files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.powershell": {
+          "runner123.powershell": {
             "type": "string",
             "default": "%File%",
             "description": "The command to run PowerShell files. You can use %File% the file with loaction, %Dir% for the dir of the file, %Exe% for the file as exe."
           },
-          "runner.exe": {
+          "runner123.exe": {
             "type": "string",
             "default": "%File%",
             "description": "The command to run exe files. You can use %File% the file with loaction, %Dir% for the dir of the file."
+          },
+          "runner123.gitBlameMode": {
+            "description": "Git Blame Mode",
+            "type": "string",
+            "enum": [
+              "Show",
+              "Hide"
+            ],
+            "default": "Show"
           }
         }
       }
@@ -142,8 +148,9 @@
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  }, 
+    "test": "node ./out/test/runTest.js",
+    "build": "vsce package"
+  },
   "devDependencies": {
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
@@ -158,6 +165,7 @@
     "ts-loader": "^9.4.3",
     "typescript": "^5.1.3",
     "webpack": "^5.85.0",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.1",
+    "@vscode/vsce": "^2.24.0"
   }
 }
