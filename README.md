@@ -10,5 +10,3 @@
   - Batch
   - PowerShell
   - exe
-
-- Git Blame
