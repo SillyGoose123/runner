@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/SillyGoose123/runner/issues"
   },
-  "homepage": "https://sillycode.tech",
+  "homepage": "https://github.com/SillyGoose123/runner",
   "version": "2.2.7",
   "engines": {
     "vscode": "^1.78.0"
